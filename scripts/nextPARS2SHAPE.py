@@ -4,6 +4,8 @@ import os
 import glob
 import argparse
 
+# Convert nextPARS to SHAPE-like scores
+# Usage: python nextPARS2SHAPE.py  --path $PATH_nextPARS_score_directory
 
 
 parser = argparse.ArgumentParser(description='Convert nextPARS to SHAPE-like scores')
@@ -31,13 +33,6 @@ def linear_mapping(items):
 	
 	return res
 	
-	# TODO
-	# Scores >0.65 were then assigned a SHAPE reactivity of 1; 
-	# scores <0.35 were assigned a reactivity of 0; 
-	# scores >0.35 and <0.65 were linearly mapped to (0,1). 
-
-
-
 path = args.path
  
 ext = '.score.outfile'
