@@ -6,7 +6,7 @@ import argparse
 
 # Convert nextPARS to SHAPE-like scores
 # Usage: python nextPARS2SHAPE.py  --path $PATH_nextPARS_score_directory
-
+# Files in directory must have .csv extension
 
 parser = argparse.ArgumentParser(description='Convert nextPARS to SHAPE-like scores')
 
@@ -35,7 +35,7 @@ def linear_mapping(items):
 	
 path = args.path
  
-ext = '.score.outfile'
+ext = '.csv'
 
 for filename in glob.glob(os.path.join(path, '*' + ext)):
 	print (filename)
@@ -46,10 +46,9 @@ for filename in glob.glob(os.path.join(path, '*' + ext)):
 
 	with open(filename, 'r') as f:
 		for line in f:
-			nline = line.rstrip().split("\t")
+			nline = line.rstrip().split(";")
 			gene_name = nline[0]
-			values = list(map(float,nline[1].split(";")[:-1]))
-
+			values = list(map(float,nline[1:-1]))
 			k = 1
 			for l in linear_mapping(values):
 				res.append([k,l])
