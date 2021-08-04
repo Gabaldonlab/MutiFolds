@@ -12,6 +12,7 @@ parser = argparse.ArgumentParser(description='Convert nextPARS to SHAPE-like sco
 
 
 parser.add_argument('--path', help='PATH to nextPARS score directory')
+parser.add_argument('--ext', nargs='?',const='.csv', help='File Extension')
 
 args = parser.parse_args()
 
@@ -35,7 +36,7 @@ def linear_mapping(items):
 	
 path = args.path
  
-ext = '.csv'
+ext = str(args.ext)
 
 for filename in glob.glob(os.path.join(path, '*' + ext)):
 	print (filename)
